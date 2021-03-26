@@ -20,7 +20,7 @@ public class Generator {
 
     public static void main(String[] args) {
 
-        doGenerate(null,new String[]{"account_book","account","balance_history","record","type","dict_item"}, true, false);
+        doGenerate(null,new String[]{"account_book","account","balance_history","record","type","dict_item"}, false, true);
 
     }
 
