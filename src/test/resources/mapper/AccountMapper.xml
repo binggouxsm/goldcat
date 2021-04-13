@@ -12,7 +12,6 @@
         <result column="balance" property="balance" />
         <result column="month_in" property="monthIn" />
         <result column="month_out" property="monthOut" />
-        <result column="curr_date" property="currDate" />
         <result column="validflag" property="validflag" />
     </resultMap>
 

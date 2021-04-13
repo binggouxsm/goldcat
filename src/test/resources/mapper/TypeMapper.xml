@@ -10,8 +10,4 @@
         <result column="validflag" property="validflag" />
     </resultMap>
 
-    <select id="getChildren" parameterType="Integer" resultMap="BaseResultMap">
-        select t.* from type t, type_tree tt where tt.ancestor = #{type} and tt.level = 1 and t.type_id = tt.descendant and t.validflag = 1
-    </select>
-
 </mapper>

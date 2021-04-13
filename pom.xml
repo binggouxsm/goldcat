@@ -44,6 +44,12 @@
                 <artifactId>edenms-cache-starter</artifactId>
                 <version>${edenms.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.eden</groupId>
+                <artifactId>edenms-mybatis-generator</artifactId>
+                <version>${edenms.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -97,6 +103,11 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.eden</groupId>
+            <artifactId>edenms-mybatis-generator</artifactId>
         </dependency>
     </dependencies>
 

@@ -1,9 +1,22 @@
+drop table if exists `user_info`;
+
+create table `user_info` (
+  `user_id`  int(20) unsigned not null auto_increment comment '用户ID',
+  `user_name` varchar(200) comment '用户名',
+  `name` varchar(200) comment '姓名',
+  `password` varchar(200) comment '用户密码',
+  `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户';
+
+
 drop table if exists `account_book`;
 
 create table `account_book` (
    `book_id`  int(20) unsigned not null auto_increment comment '账本ID',
    `name` varchar(200) comment '账本名称',
-   `delflag`  tinyint unsigned comment '有效标志',
+   `user_id` int(20) unsigned comment '用户ID',
+   `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
    PRIMARY KEY (`book_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '账本';
 
@@ -17,7 +30,9 @@ create table `account` (
   `type` int(20) comment '账户类别',
   `currency`  varchar(10) comment '账户币别',
   `balance` DECIMAL(18,2) comment '账户余额',
-  `delflag`  tinyint unsigned comment '有效标志',
+  `month_in` DECIMAL(18,2) comment '当月收入累计金额',
+  `month_out` DECIMAL(18,2) comment '当月支出累计金额',
+  `validflag`  tinyint(1) unsigned default 1  comment '有效标志',
   PRIMARY KEY (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '账户';
 
@@ -25,16 +40,14 @@ create table `account` (
 drop table if exists `balance_history`;
 
 create table `balance_history` (
-   `balance_history_id`  int(20) unsigned not null auto_increment comment '余额历史ID',
    `account_id` int(20) unsigned comment '账户',
    `hisdate` DATE comment '历史日期',
    `currency`  varchar(10) comment '账户币别',
    `balance` DECIMAL(18,2) comment '账户余额',
-   `is_month` tinyint unsigned comment '是否月末',
-   `is_season` tinyint unsigned comment '是否季末',
-   `is_year` tinyint unsigned comment '是否年末',
-   `delflag`  tinyint unsigned comment '有效标志',
-   PRIMARY KEY (`balance_history_id`)
+   `is_month` tinyint(1) unsigned comment '是否月末',
+   `is_season` tinyint(1) unsigned comment '是否季末',
+   `is_year` tinyint(1) unsigned comment '是否年末',
+   PRIMARY KEY (`account_id`, `hisdate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '余额历史';
 
 
@@ -50,7 +63,7 @@ create table `record` (
   `happen_time` DATETIME comment '交易事件',
   `party` varchar(300) comment '商户信息',
   `note` varchar(500) comment '备注',
-  `delflag`  tinyint unsigned comment '有效标志',
+  `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
   PRIMARY KEY (`record_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '记账记录';
 
@@ -60,7 +73,7 @@ create table `type` (
   `type_id`  int(20) unsigned not null auto_increment comment '类型ID',
   `name`  varchar(50) comment '类型名称',
   `note` varchar(500) comment '备注',
-  `delflag`  tinyint unsigned comment '有效标志',
+  `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
   PRIMARY KEY (`type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '类型';
 
@@ -83,6 +96,6 @@ create table `dict_item` (
   `code`  varchar(200) comment '字典码值',
   `name`  varchar(200) comment '字典名称',
   `item_order` int(20) unsigned comment '字典顺序',
-  `delflag`  tinyint unsigned default 0 comment '有效标志',
+  `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
   PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '字典表';

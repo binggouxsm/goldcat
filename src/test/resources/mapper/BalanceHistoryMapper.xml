@@ -5,7 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.eden.finance.goldcat.entity.BalanceHistory">
         <id column="account_id" property="accountId" />
-        <id column="his_date" property="hisDate" />
+        <id column="hisdate" property="hisdate" />
         <result column="currency" property="currency" />
         <result column="balance" property="balance" />
         <result column="is_month" property="isMonth" />

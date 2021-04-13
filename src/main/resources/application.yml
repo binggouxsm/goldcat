@@ -12,11 +12,12 @@ spring:
       username: goldcat
       password: goldcat
 
-mybatis-plus:
-  mapper-locations: classpath:/mapper/**/*Mapper.xml
-  global-config:
-    db-config:
-      logic-delete-field: delflag
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mapper/*Mapper.xml
+mapper:
+  not-empty: true
 
 eden:
   msutils:
@@ -27,3 +28,6 @@ eden:
         cut-layer: controller
     cache:
       type: caffeine
+logging:
+  level:
+    com.eden.finance.goldcat.mapper: DEBUG

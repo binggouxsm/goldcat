@@ -12,8 +12,4 @@
         <result column="validflag" property="validflag" />
     </resultMap>
 
-    <select id="queryCode" parameterType="String" resultMap="BaseResultMap">
-        select * from dict_item where type = #{type} and validflag = 1 order by  item_order
-    </select>
-
 </mapper>
