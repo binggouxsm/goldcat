@@ -27,11 +27,13 @@ create table `account` (
   `account_id`  int(20) unsigned not null auto_increment comment '账户ID',
   `book_id` int(20) unsigned comment '所属账本',
   `name` varchar(200) comment '账户名称',
+  `account_no` varchar(200) comment '账户号',
   `type` int(20) comment '账户类别',
   `currency`  varchar(10) comment '账户币别',
   `balance` DECIMAL(18,2) comment '账户余额',
   `month_in` DECIMAL(18,2) comment '当月收入累计金额',
   `month_out` DECIMAL(18,2) comment '当月支出累计金额',
+  `month_transfer` DECIMAL(18,2) comment '当月转出累计金额',
   `validflag`  tinyint(1) unsigned default 1  comment '有效标志',
   PRIMARY KEY (`account_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '账户';
@@ -44,6 +46,12 @@ create table `balance_history` (
    `hisdate` DATE comment '历史日期',
    `currency`  varchar(10) comment '账户币别',
    `balance` DECIMAL(18,2) comment '账户余额',
+   `day_in` DECIMAL(18,2) comment '当日收入累计金额',
+   `day_out` DECIMAL(18,2) comment '当日支出累计金额',
+   `day_transfer` DECIMAL(18,2) comment '当日转出累计金额',
+   `month_in` DECIMAL(18,2) comment '月收入累计金额',
+   `month_out` DECIMAL(18,2) comment '月支出累计金额',
+   `month_transfer` DECIMAL(18,2) comment '月转出累计金额',
    `is_month` tinyint(1) unsigned comment '是否月末',
    `is_season` tinyint(1) unsigned comment '是否季末',
    `is_year` tinyint(1) unsigned comment '是否年末',
@@ -55,17 +63,33 @@ drop table if exists `record`;
 
 create table `record` (
   `record_id`  varchar(50) not null comment '记账记录ID',
-  `record_type` varchar(50) comment '类型：收入、支出、转账',
+  `record_type` int(20) comment '类型：收入、支出、转账',
   `record_type_id` int(20) comment '具体类型',
-  `account_id`  varchar(50) comment '账户',
+  `account_id`  int(20) comment '账户',
+  `real_account_id`  int(20) comment '实际支付账户，该字段针对微信、支付宝等虚拟账户',
   `currency`  varchar(10) comment '币别',
   `amount` DECIMAL(18,2) comment '金额',
-  `happen_time` DATETIME comment '交易事件',
+  `source` varchar(10) comment '信息来源：微信，支付宝等等',
+  `happen_time` DATETIME comment '交易时间',
   `party` varchar(300) comment '商户信息',
+  `product` varchar(500) comment '商品信息',
+  `status` varchar(50) comment '交易状态',
   `note` varchar(500) comment '备注',
   `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
   PRIMARY KEY (`record_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '记账记录';
+
+
+
+drop table if exists `file_info`;
+
+create table `file_info`(
+  `file_id` varchar(50) not null  comment '文件ID',
+  `name` varchar(200) comment '文件名称',
+  `address` varchar(300) comment '文件存放位置',
+  `validflag`  tinyint(1) unsigned default 1 comment '有效标志',
+  PRIMARY KEY (`file_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '文件信息';
 
 drop table if exists `type`;
 

@@ -1,13 +1,19 @@
--- truncate table `account_book`;
+truncate table `account_book`;
 
 insert into `account_book` values(1,'默认账本',1,1);
 
--- truncate table `type`;
+truncate table `account`;
+insert into `account` (account_id, book_id, `name`,`type`,`currency`,`validflag`) values (1,1,'微信支付',23,'CNY',1);
+
+truncate table `type`;
+truncate table `type_tree`;
 
 insert into `type` values(1, '收入支出类型',null,1);
 insert into `type` values(2, '收入',null,1);
 insert into `type` values(3, '支出',null,1);
 insert into `type` values(4, '转账',null,1);
+
+
 
 insert into `type_tree` values (1,1,0);
 insert into `type_tree` values (1,2,1);
@@ -21,7 +27,7 @@ insert into `type_tree` values (4,4,0);
 insert into `type` values(20, '账户类型',null,1);
 insert into `type` values(21, '现金账户',null,1);
 insert into `type` values(22, '银行卡账户',null,1);
-insert into `type` values(23, '投资账户',null,1);
+insert into `type` values(23, '虚拟账户',null,1);
 
 insert into `type_tree` values (20,20,0);
 insert into `type_tree` values (20,21,1);
@@ -44,6 +50,8 @@ insert into `type_tree` values (41,41,0);
 insert into `type_tree` values (42,42,0);
 
 insert into `type` values(99, '测试',null,1);
+
+truncate table `dict_item`;
 
 truncate table `dict_item`;
 

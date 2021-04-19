@@ -23,13 +23,17 @@ public class Test {
         DataSourceConfig dataSourceConfig = new DataSourceConfig(url,driverName,useName,password);
 
         Map<String,String> tableModule = new HashMap<>();
-        tableModule.put("account","");
-        tableModule.put("account_book","");
-        tableModule.put("record","");
-        tableModule.put("dict_item","");
-        tableModule.put("type","");
-        tableModule.put("balance_history","");
-        tableModule.put("user_info","");
+        tableModule.put("account","account");
+//        tableModule.put("account_book","account");
+		tableModule.put("balance_history","account");
+//
+//        tableModule.put("record","record");
+//
+//        tableModule.put("dict_item","system");
+//        tableModule.put("type","system");
+//        tableModule.put("user_info","system");
+//        tableModule.put("file_info","system");
+
 
 
         PackageConfig packageConfig = new PackageConfig();

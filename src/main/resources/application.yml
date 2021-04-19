@@ -15,9 +15,14 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: mapper/*Mapper.xml
+  mapper-locations: mapper/**/*Mapper.xml
+  typeAliasesPackage: com.eden.finance.goldcat.*.entity
 mapper:
   not-empty: true
+
+system:
+  file-path: d://tmp//goldcat
+
 
 eden:
   msutils:
@@ -30,4 +35,4 @@ eden:
       type: caffeine
 logging:
   level:
-    com.eden.finance.goldcat.mapper: DEBUG
+    com.eden.finance.goldcat.*.mapper: DEBUG
