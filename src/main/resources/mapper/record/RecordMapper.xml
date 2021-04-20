@@ -26,6 +26,10 @@
         ]]>
     </delete>
 
+    <select id="queryPeriod" parameterType="Map" resultType="Record">
+        select * from record where happen_time between  #{startDate} and #{endDate} and  account_id = #{accountId} and validflag =1 order by happen_time
+    </select>
+
 
 
 </mapper>

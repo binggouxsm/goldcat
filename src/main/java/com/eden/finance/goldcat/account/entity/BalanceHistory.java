@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author xsm
- * @since 2021-04-18
+ * @since 2021-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -37,7 +37,10 @@ public class BalanceHistory implements Serializable {
     @ApiModelProperty(value = "账户币别")
     private String currency;
 
-    @ApiModelProperty(value = "账户余额")
+    @ApiModelProperty(value = "日初账户余额")
+    private BigDecimal beforeBalance;
+
+    @ApiModelProperty(value = "日末账户余额")
     private BigDecimal balance;
 
     @ApiModelProperty(value = "当日收入累计金额")

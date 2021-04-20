@@ -65,7 +65,7 @@ public class RecordService {
 		}
 
 		records.setRecords(null);
-		publisher.publishEvent(new RecaculateEvent(null,records));
+		publisher.publishEvent(new RecaculateEvent("前端导入",records));
 
 	}
 }

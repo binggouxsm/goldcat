@@ -34,10 +34,10 @@ public class TimeHandler extends Handler {
 				importRecord.setEndDate(enddate);
 			}
 
-			if(startdate!=null && enddate!= null ){
-				 if(startdate.getYear() != enddate.getYear() || startdate.getMonthValue() != enddate.getMonthValue())
-				 	throw new BizException("请导入同年同月的记录，不接受导入跨年或跨月数据");
-			}
+//			if(startdate!=null && enddate!= null ){
+//				 if(startdate.getYear() != enddate.getYear() || startdate.getMonthValue() != enddate.getMonthValue())
+//				 	throw new BizException("请导入同年同月的记录，不接受导入跨年或跨月数据");
+//			}
 		}
 	}
 }

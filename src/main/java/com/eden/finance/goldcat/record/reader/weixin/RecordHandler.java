@@ -1,9 +1,11 @@
 package com.eden.finance.goldcat.record.reader.weixin;
 
+import cn.hutool.core.date.DatePattern;
 import com.eden.finance.goldcat.record.entity.ImportRecord;
 import com.eden.finance.goldcat.record.entity.Record;
 import com.eden.finance.goldcat.record.reader.Handler;
 import com.eden.finance.goldcat.system.entity.enums.TypeCode;
+import com.eden.finance.goldcat.util.DateUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,7 +43,7 @@ public class RecordHandler extends Handler  {
 
 	private void transform(String[] item, ImportRecord importRecord){
 
-		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		DateTimeFormatter df = DatePattern.NORM_DATETIME_FORMATTER;
 		ObjectMapper json = new ObjectMapper();
 
 		Record record = new Record();
@@ -54,10 +56,11 @@ public class RecordHandler extends Handler  {
 		record.setParty(item[2]);
 		record.setProduct(item[3]);
 
-		String type = ("/".equals(item[4])) ? "转出" : item[4];
+		String type = ("/".equals(item[4])) ? "转账" : item[4];
 		record.setRecordType(TypeCode.resolveDesc(type));
 		record.setCurrency("CNY");
-		record.setAmount(new BigDecimal(item[5].toCharArray(),1,item[5].length()-1));
+		BigDecimal amt = new BigDecimal(item[5].toCharArray(),1,item[5].length()-1);
+		record.setAmount(("/".equals(item[4])) ? amt.negate() : amt);
 
 		map.put("支付方式",item[6]);
 		record.setStatus(item[7]);

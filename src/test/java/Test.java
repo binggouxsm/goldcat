@@ -46,6 +46,7 @@ public class Test {
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setDiableServiceInterface(true);
         strategyConfig.setChainModel(true);
+        strategyConfig.setBaseColumnList(true);
 
         AutoGenerator gen = new AutoGenerator();
         gen.setDataSourceConfig(dataSourceConfig).setGlobalConfig(globalConfig).setPackageConfig(packageConfig).setTemplateConfig(templateConfig).setStrategyConfig(strategyConfig).execute();

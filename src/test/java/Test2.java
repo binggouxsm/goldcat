@@ -1,4 +1,10 @@
+import cn.hutool.core.date.DatePattern;
+
 import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,21 +18,18 @@ public class Test2 {
 //
 //		System.out.println();
 
-		String aa ="起始时间：[2021-03-01 00:00:00] 终止时间：[2021-03-31 23:59:59]"; //  终止时间：[2021-03-31 23:59:59]
+		String yearMonth ="2021-02"; //  终止时间：[2021-03-31 23:59:59]
 
-		Pattern pattern = Pattern.compile("起始时间：\\[([0-9\\: \\-]+)\\]");
+		LocalDate date = LocalDate.parse(yearMonth+"-01", DatePattern.NORM_DATE_FORMATTER);
 
-		Pattern pattern2 = Pattern.compile("终止时间：\\[([0-9\\: \\-]+)\\]");
+		LocalDateTime startDate = date.atStartOfDay();
+		System.out.println(startDate.format(DatePattern.NORM_DATETIME_FORMATTER));
 
-		System.out.println(aa.matches("起始时间：\\[[0-9\\: \\-]+\\]"));
+		LocalDate lastDate = date.with(TemporalAdjusters.lastDayOfMonth());
 
-		Matcher m = pattern2.matcher(aa);
-		if(m.find()){
-			System.out.println(m.group(0));
-			System.out.println(m.group(1));
-			System.out.println(m.group(2));
-			System.out.println(m.group(3));
-		}
+		LocalDateTime endDate = LocalDateTime.of(lastDate,LocalTime.MAX);
+		System.out.println(endDate.format(DatePattern.NORM_DATETIME_FORMATTER));
+
 
 //		RecordReader reader = new WeixinRecordReader();
 //		List<Record> records = reader.getRecords(file);

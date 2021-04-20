@@ -7,6 +7,7 @@
         <id column="account_id" property="accountId" />
         <id column="hisdate" property="hisdate" />
         <result column="currency" property="currency" />
+        <result column="before_balance" property="beforeBalance" />
         <result column="balance" property="balance" />
         <result column="day_in" property="dayIn" />
         <result column="day_out" property="dayOut" />
@@ -18,5 +19,16 @@
         <result column="is_season" property="isSeason" />
         <result column="is_year" property="isYear" />
     </resultMap>
+
+    <select id="queryMonth" parameterType="Map" resultType="BalanceHistory">
+        select * from balance_history where account_id = #{accountId} and hisdate between #{startDate} and #{endDate} order by hisdate
+    </select>
+
+    <update id="batchInsert" parameterType="BalanceHistory">
+        replace into balance_history (account_id,hisdate,currency,before_balance,balance,day_in,day_out,day_transfer,month_in,month_out,month_transfer,is_month,is_season,is_year) values
+        <foreach item="item"  collection="list"  separator="," >
+        (#{item.accountId},#{item.hisdate},#{item.currency},#{item.beforeBalance},#{item.balance},#{item.dayIn},#{item.dayOut},#{item.dayTransfer},#{item.monthIn},#{item.monthOut},#{item.monthTransfer},#{item.isMonth},#{item.isSeason},#{item.isYear})
+        </foreach>
+    </update>
 
 </mapper>
