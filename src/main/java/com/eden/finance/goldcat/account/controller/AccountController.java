@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.eden.finance.goldcat.account.service.AccountService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -33,6 +36,22 @@ public class AccountController {
 	public List<Account> queryAccount(@RequestBody Account account){
 		account.setValidflag(true);
 		return accountService.queryAccount(account);
+	}
+
+	@PostMapping("queryByType")
+	public Map<String, List<Account>> queryAccountByType(@RequestBody Account account){
+		account.setValidflag(true);
+		Map<String, List<Account>> ret = new HashMap<>();
+		List<Account> accounts = accountService.queryAccount(account);
+		for(Account acc : accounts){
+			List<Account> accountList = ret.get(acc.getType());
+			if( accountList == null){
+				accountList = new ArrayList<>();
+				ret.put(acc.getType(), accountList);
+			}
+			accountList.add(acc);
+		}
+		return ret;
 	}
 
 	@DeleteMapping("")

@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author xsm
- * @since 2021-04-19
+ * @since 2021-04-21
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,7 +32,7 @@ public class Account implements Serializable {
     private Integer accountId;
 
     @ApiModelProperty(value = "所属账本")
-    private Integer bookId;
+    private Integer bookId = 1;
 
     @ApiModelProperty(value = "账户名称")
     private String name;
@@ -41,7 +41,7 @@ public class Account implements Serializable {
     private String accountNo;
 
     @ApiModelProperty(value = "账户类别")
-    private Integer type;
+    private String type;
 
     @ApiModelProperty(value = "账户币别")
     private String currency;

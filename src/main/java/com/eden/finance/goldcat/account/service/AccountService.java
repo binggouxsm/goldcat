@@ -41,8 +41,6 @@ public class AccountService {
 		}else {
 			balanceHistoryMapper.insertSelective(hist);
 		}
-		System.out.println("===");
-
 	}
 
 
@@ -57,7 +55,6 @@ public class AccountService {
 	}
 
 
-	
 }
 
 

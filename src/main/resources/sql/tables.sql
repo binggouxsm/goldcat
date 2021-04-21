@@ -28,7 +28,7 @@ create table `account` (
   `book_id` int(20) unsigned comment '所属账本',
   `name` varchar(200) comment '账户名称',
   `account_no` varchar(200) comment '账户号',
-  `type` int(20) comment '账户类别',
+  `type` varchar(100) comment '账户类别',
   `currency`  varchar(10) comment '账户币别',
   `balance` DECIMAL(18,2) comment '账户余额',
   `month_in` DECIMAL(18,2) comment '当月收入累计金额',
@@ -118,7 +118,7 @@ drop table if exists `dict_item`;
 create table `dict_item` (
   `item_id`  int(20) unsigned not null auto_increment comment '字典ID',
   `type`  varchar(50) comment '字典类型',
-  `code`  varchar(200) comment '字典码值',
+  `code`  varchar(100) comment '字典码值',
   `name`  varchar(200) comment '字典名称',
   `item_order` int(20) unsigned comment '字典顺序',
   `validflag`  tinyint(1) unsigned default 1 comment '有效标志',

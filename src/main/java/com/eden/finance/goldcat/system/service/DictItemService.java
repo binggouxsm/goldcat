@@ -21,6 +21,7 @@ public class DictItemService {
 	@Autowired
 	private DictItemMapper dictItemMapper;
 
+
 	public List<DictItem> getCode(String code) {
 		return dictItemMapper.queryCode(code);
 	}

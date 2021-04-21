@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eden.finance.goldcat.account.mapper.AccountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.eden.finance.goldcat.account.entity.Account">
+        <id column="account_id" property="accountId" />
+        <result column="book_id" property="bookId" />
+        <result column="name" property="name" />
+        <result column="account_no" property="accountNo" />
+        <result column="type" property="type" />
+        <result column="currency" property="currency" />
+        <result column="balance" property="balance" />
+        <result column="month_in" property="monthIn" />
+        <result column="month_out" property="monthOut" />
+        <result column="month_transfer" property="monthTransfer" />
+        <result column="validflag" property="validflag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        account_id,
+        book_id,
+        name,
+        account_no,
+        type,
+        currency,
+        balance,
+        month_in,
+        month_out,
+        month_transfer,
+        validflag
+    </sql>
+
+</mapper>

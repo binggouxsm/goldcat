@@ -25,7 +25,7 @@ public class Test {
         Map<String,String> tableModule = new HashMap<>();
         tableModule.put("account","account");
 //        tableModule.put("account_book","account");
-		tableModule.put("balance_history","account");
+//		tableModule.put("balance_history","account");
 //
 //        tableModule.put("record","record");
 //

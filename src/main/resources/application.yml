@@ -35,4 +35,4 @@ eden:
       type: caffeine
 logging:
   level:
-    com.eden.finance.goldcat.*.mapper: DEBUG
+    com.eden.finance.goldcat: DEBUG
